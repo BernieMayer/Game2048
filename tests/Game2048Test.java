@@ -44,12 +44,12 @@ public class Game2048Test {
 
       game2048.makeMove(Game2048.Move.LEFT);
 
-      assertThat(testBoard[0][0], CoreMatchers.is(4));
+      assertThat(game2048.getGameBoard()[0][0], CoreMatchers.is(4));
    }
 
    @Test
    public void testSimpleMoveRightLogic() {
-      int[][] testBoard = new int[][]{ {2, 2, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+      int[][] testBoard = new int[][]{ {0, 0, 2, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
 
       Game2048 game2048 = new Game2048();
       Game2048.TestAccessor testAccessor = game2048.getTestAccessor();
@@ -58,7 +58,7 @@ public class Game2048Test {
 
       game2048.makeMove(Game2048.Move.RIGHT);
 
-      assertThat(testBoard[0][0], CoreMatchers.is(4));
+      assertThat(game2048.getGameBoard()[0][3], CoreMatchers.is(4));
    }
 
    @Test
@@ -72,7 +72,8 @@ public class Game2048Test {
 
       game2048.makeMove(Game2048.Move.DOWN);
 
-      assertThat(testBoard[3][3], CoreMatchers.is(4));
+
+      assertThat(game2048.getGameBoard()[3][3], CoreMatchers.is(4));
 
    }
 
@@ -87,7 +88,7 @@ public class Game2048Test {
 
       game2048.makeMove(Game2048.Move.UP);
 
-      assertThat(testBoard[0][3], CoreMatchers.is(4));
+      assertThat(game2048.getGameBoard()[0][3], CoreMatchers.is(4));
 
    }
 
