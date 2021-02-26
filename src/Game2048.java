@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.TestOnly;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -12,6 +14,7 @@ public class Game2048 {
 
     SplittableRandom random;
 
+    TestAccessor testAccessor;
 
     public Game2048() {
         gameBoard = new int[GAME_BOARD_WIDTH][GAME_BOARD_HEIGHT];
@@ -20,6 +23,13 @@ public class Game2048 {
         //add the initial two tiles to the gameboard
         addTileToGameBoard();
         addTileToGameBoard();
+
+        testAccessor = new TestAccessor();
+
+    }
+
+    public void makeMove(Move move) {
+
     }
 
     private void addTileToGameBoard() {
@@ -52,5 +62,27 @@ public class Game2048 {
 
     public int[][] getGameBoard() {
         return gameBoard;
+    }
+
+    @TestOnly
+    public TestAccessor getTestAccessor() {
+        return testAccessor;
+    }
+
+
+    public enum Move {
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
+    }
+
+
+    protected class TestAccessor {
+
+        void setGameBoard(int[][] testGameBoard) {
+            gameBoard = testGameBoard;
+        }
+
     }
 }
