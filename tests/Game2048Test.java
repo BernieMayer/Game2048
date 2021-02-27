@@ -92,8 +92,8 @@ public class Game2048Test {
    }
 
    @Test
-   public void testGameOverWinning() {
-      int[][] testBoard = new int[][]{ {0, 0, 0, 2048}, {0, 0, 0, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+   public void testGameOverWinningFor2048() {
+      int[][] testBoard = new int[][]{ {2, 4, 16, 4}, {128, 64, 4, 8}, {2, 4, 16, 64}, {8, 2, 32, 2}};
 
       Game2048 game2048 = new Game2048();
       Game2048.TestAccessor testAccessor = game2048.getTestAccessor();
@@ -102,6 +102,8 @@ public class Game2048Test {
 
       assertThat(game2048.isGameOver(), CoreMatchers.is(true));
    }
+
+
 
 
 }
