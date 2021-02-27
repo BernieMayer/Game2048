@@ -2,7 +2,6 @@ import org.jetbrains.annotations.TestOnly;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 import java.util.SplittableRandom;
 
 public class Game2048 {
@@ -26,6 +25,18 @@ public class Game2048 {
 
         testAccessor = new TestAccessor();
 
+    }
+
+    public boolean isGameOver() {
+        for (int i = 0; i < gameBoard.length; i++) {
+            for (int j = 0; j < gameBoard[i].length; j++) {
+                if (gameBoard[i][j] == 2048) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public void makeMove(Move move) {
