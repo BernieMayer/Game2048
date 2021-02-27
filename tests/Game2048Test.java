@@ -36,6 +36,7 @@ public class Game2048Test {
    public void testSimpleMoveLeftLogic() {
 
       int[][] testBoard = new int[][]{ {2, 2, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+      int[][] expectedBoard = new int[][]{ {4, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
 
       Game2048 game2048 = new Game2048();
       Game2048.TestAccessor testAccessor = game2048.getTestAccessor();
@@ -44,6 +45,7 @@ public class Game2048Test {
 
       game2048.makeMove(Game2048.Move.LEFT);
 
+      assertThat(game2048.getGameBoard(), CoreMatchers.equalTo(expectedBoard));
       assertThat(game2048.getGameBoard()[0][0], CoreMatchers.is(4));
    }
 
@@ -90,6 +92,73 @@ public class Game2048Test {
       testAccessor.setGameBoard(testBoard);
 
       game2048.makeMove(Game2048.Move.UP);
+
+      //assertThat(game2048.getGameBoard()[0][3], CoreMatchers.is(4));
+      assertThat(game2048.getGameBoard(), CoreMatchers.equalTo(expectedBoard));
+   }
+
+
+   @Test
+   public void testMovePieceRightLogic() {
+      int[][] testBoard = new int[][]{ {0, 0, 2, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+      int[][] expectedBoard =  new int[][]{ {0, 0, 0, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+
+      Game2048 game2048 = new Game2048();
+      Game2048.TestAccessor testAccessor = game2048.getTestAccessor();
+
+      testAccessor.setGameBoard(testBoard);
+
+      game2048.makeMove(Game2048.Move.RIGHT);
+
+      //assertThat(game2048.getGameBoard()[0][3], CoreMatchers.is(4));
+      assertThat(game2048.getGameBoard(), CoreMatchers.equalTo(expectedBoard));
+
+   }
+
+   @Test
+   public void testMovePieceLeftLogic() {
+      int[][] testBoard = new int[][]{ {0, 0, 2, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+      int[][] expectedBoard =  new int[][]{ {0, 0, 0, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+
+      Game2048 game2048 = new Game2048();
+      Game2048.TestAccessor testAccessor = game2048.getTestAccessor();
+
+      testAccessor.setGameBoard(testBoard);
+
+      game2048.makeMove(Game2048.Move.LEFT);
+
+      //assertThat(game2048.getGameBoard()[0][3], CoreMatchers.is(4));
+      assertThat(game2048.getGameBoard(), CoreMatchers.equalTo(expectedBoard));
+   }
+
+   @Test
+   public void testMovePieceUpLogic() {
+      int[][] testBoard = new int[][]{ {0, 0, 0, 0}, {0, 0, 0, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+      int[][] expectedBoard =  new int[][]{ {0, 0, 0, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+
+      Game2048 game2048 = new Game2048();
+      Game2048.TestAccessor testAccessor = game2048.getTestAccessor();
+
+      testAccessor.setGameBoard(testBoard);
+
+      game2048.makeMove(Game2048.Move.UP);
+
+      //assertThat(game2048.getGameBoard()[0][3], CoreMatchers.is(4));
+      assertThat(game2048.getGameBoard(), CoreMatchers.equalTo(expectedBoard));
+
+   }
+
+   @Test
+   public void testMovePieceDownLogic() {
+      int[][] testBoard = new int[][]{ {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 2}, {0, 0, 0, 0}};
+      int[][] expectedBoard =  new int[][]{ {0, 0, 0, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 2}};
+
+      Game2048 game2048 = new Game2048();
+      Game2048.TestAccessor testAccessor = game2048.getTestAccessor();
+
+      testAccessor.setGameBoard(testBoard);
+
+      game2048.makeMove(Game2048.Move.DOWN);
 
       //assertThat(game2048.getGameBoard()[0][3], CoreMatchers.is(4));
       assertThat(game2048.getGameBoard(), CoreMatchers.equalTo(expectedBoard));

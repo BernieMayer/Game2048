@@ -29,8 +29,106 @@ public class Game2048 {
     }
 
     public void makeMove(Move move) {
+        int[][] gameBoardCopy = new int[GAME_BOARD_WIDTH][GAME_BOARD_HEIGHT];
 
-        mergeAdjacentTiles(move);
+        if (move == Move.RIGHT) {
+            for (int r = 0; r < gameBoard.length; r++) {
+                int[] row = gameBoard[r];
+                for (int i = 0; i < row.length - 1; i++) {
+                    if (row[i] == row[i + 1]) {
+                        gameBoardCopy[r][i + 1] = 2 * row[i];
+                    }
+                }
+            }
+
+            this.gameBoard = gameBoardCopy;
+        } else if (move == Move.LEFT) {
+            for (int r = 0; r < gameBoard.length; r++) {
+                int[] row = gameBoard[r];
+                for (int i = row.length - 1; i >= 1; i--) {
+                    if (row[i] == row[i - 1]) {
+                        gameBoardCopy[r][i - 1] = row[i] * 2;
+                    }
+                }
+            }
+            this.gameBoard = gameBoardCopy;
+        } else if (move == Move.UP) {
+            for (int r = 0; r <gameBoard.length; r++) {
+                for (int c = 0; c < gameBoard[r].length - 1; c++) {
+                    if (gameBoard[r][c] == gameBoard[r][c + 1]) {
+                        gameBoardCopy[r][c + 1] = gameBoard[r][c] * 2;
+                    }
+                }
+            }
+
+            this.gameBoard = gameBoardCopy;
+        } else if (move == Move.DOWN) {
+            for (int r = 0; r < gameBoard.length; r++) {
+                for (int c = gameBoard[r].length  - 1; c >= 1; c--) {
+                    if (gameBoard[r][c] == gameBoard[r][c - 1]) {
+                        gameBoardCopy[r][c - 1] = gameBoard[r][c] * 2;
+                    }
+                }
+            }
+
+            this.gameBoard = gameBoardCopy;
+        }
+
+
+    }
+
+//    private void applyMoveToRowGivenMove(int[] row, Move move) {
+//
+//        if (move = Move.RIGHT) {
+//            applyRightMove(row);
+//        }
+//    }
+
+    private void applyLeftMerge(int[] row) {
+        for (int i = row.length - 1; i > 1; i--) {
+            if (row[i] == row[i - 1]) {
+                row[i - 1] = row[i] * 2;
+            }
+        }
+    }
+
+    private void applyRightMerge(int[] row) {
+        for (int i = 0; i < row.length -1; i++) {
+            if (row[i] == row[i + 1]) {
+                row[i + 1] = 2 * row[i];
+            }
+        }
+    }
+
+    private void applyRightMove(int[] row) {
+        for (int i = 0; i < row.length - 1; i++) {
+            if (row[i] == row[i + 1]) {
+                row[i + 1] = row[i];
+            } else if (row[i] != 0 && row[i + 1] == 0) {
+                row[i + 1] = row[i];
+                row[i] = 0;
+            }
+        }
+        row[0] = 0;
+    }
+    /*
+    private void moveTiles(Move move) {
+        int[] currentIndex;
+        int[] adjacentIndex;
+
+        //slide the current tile
+        for (int i = 0; i < gameBoard.length; i++) {
+            for (int j = 0; j < gameBoard[i].length; j++) {
+
+                int current = gameBoard[i][j];
+            }
+        }
+    }
+
+    private void swapIndicesOnGameBoard(int[] currentIndex, int[] otherIndex) {
+        int temp = gameBoard[currentIndex[0]][currentIndex[1]];
+        gameBoard[otherIndex[0]][otherIndex[1]] = gameBoard[currentIndex[0]][currentIndex[1]];
+        gameBoard[otherIndex[0]][otherIndex[1]] = temp;
     }
 
     private void mergeAdjacentTiles(Move move) {
@@ -58,7 +156,7 @@ public class Game2048 {
             adjacentIndex = getNextIndex(currentIndex, move);
         }
 
-    }
+    }*/
 
     private int[] getInitialIndexForMove(Move move) {
         switch (move) {
