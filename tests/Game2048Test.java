@@ -64,6 +64,7 @@ public class Game2048Test {
    @Test
    public void testSimpleMoveDownLogic() {
       int[][] testBoard = new int[][]{ {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 2}, {0, 0, 0, 2}};
+      int[][] expectedBoard = new int[][]{ {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 4}};
 
       Game2048 game2048 = new Game2048();
       Game2048.TestAccessor testAccessor = game2048.getTestAccessor();
@@ -73,13 +74,15 @@ public class Game2048Test {
       game2048.makeMove(Game2048.Move.DOWN);
 
 
-      assertThat(game2048.getGameBoard()[3][3], CoreMatchers.is(4));
+      //assertThat(game2048.getGameBoard()[3][3], CoreMatchers.is(4));
+      assertThat(game2048.getGameBoard(), CoreMatchers.equalTo(expectedBoard));
 
    }
 
    @Test
    public void testSimpleMoveUpLogic() {
       int[][] testBoard = new int[][]{ {0, 0, 0, 2}, {0, 0, 0, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+      int[][] expectedBoard =  new int[][]{ {0, 0, 0, 4}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
 
       Game2048 game2048 = new Game2048();
       Game2048.TestAccessor testAccessor = game2048.getTestAccessor();
@@ -88,7 +91,8 @@ public class Game2048Test {
 
       game2048.makeMove(Game2048.Move.UP);
 
-      assertThat(game2048.getGameBoard()[0][3], CoreMatchers.is(4));
+      //assertThat(game2048.getGameBoard()[0][3], CoreMatchers.is(4));
+      assertThat(game2048.getGameBoard(), CoreMatchers.equalTo(expectedBoard));
 
    }
 
