@@ -118,7 +118,7 @@ public class Game2048Test {
    @Test
    public void testMovePieceLeftLogic() {
       int[][] testBoard = new int[][]{ {0, 0, 2, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
-      int[][] expectedBoard =  new int[][]{ {0, 0, 0, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+      int[][] expectedBoard =  new int[][]{ {2, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
 
       Game2048 game2048 = new Game2048();
       Game2048.TestAccessor testAccessor = game2048.getTestAccessor();

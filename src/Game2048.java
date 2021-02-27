@@ -32,53 +32,28 @@ public class Game2048 {
 
         if (move == Move.RIGHT) {
             moveTilesRight();
+            mergeTilesRight();
+        } else if (move == Move.LEFT) {
+            moveTilesLeft();
+            //mergeTilesLeft();
+        } else if (move == Move.UP) {
+            //moveTilesUp();
+            //mergeTilesUp();
+        } else if (move == Move.DOWN) {
+            //moveTilesDown();
+            //mergeTilesDown();
         }
-//        int[][] gameBoardCopy = new int[GAME_BOARD_WIDTH][GAME_BOARD_HEIGHT];
-//
-//        if (move == Move.RIGHT) {
-//            for (int r = 0; r < gameBoard.length; r++) {
-//                int[] row = gameBoard[r];
-//                for (int i = 0; i < row.length - 1; i++) {
-//                    if (row[i] == row[i + 1]) {
-//                        gameBoardCopy[r][i + 1] = 2 * row[i];
-//                    }
-//                }
-//            }
-//
-//            this.gameBoard = gameBoardCopy;
-//        } else if (move == Move.LEFT) {
-//            for (int r = 0; r < gameBoard.length; r++) {
-//                int[] row = gameBoard[r];
-//                for (int i = row.length - 1; i >= 1; i--) {
-//                    if (row[i] == row[i - 1]) {
-//                        gameBoardCopy[r][i - 1] = row[i] * 2;
-//                    }
-//                }
-//            }
-//            this.gameBoard = gameBoardCopy;
-//        } else if (move == Move.UP) {
-//            for (int r = 0; r <gameBoard.length; r++) {
-//                for (int c = 0; c < gameBoard[r].length - 1; c++) {
-//                    if (gameBoard[r][c] == gameBoard[r][c + 1]) {
-//                        gameBoardCopy[r][c + 1] = gameBoard[r][c] * 2;
-//                    }
-//                }
-//            }
-//
-//            this.gameBoard = gameBoardCopy;
-//        } else if (move == Move.DOWN) {
-//            for (int r = 0; r < gameBoard.length; r++) {
-//                for (int c = gameBoard[r].length  - 1; c >= 1; c--) {
-//                    if (gameBoard[r][c] == gameBoard[r][c - 1]) {
-//                        gameBoardCopy[r][c - 1] = gameBoard[r][c] * 2;
-//                    }
-//                }
-//            }
-//
-//            this.gameBoard = gameBoardCopy;
-//        }
 
+    }
 
+    private void mergeTilesRight() {
+        for (int i = 0; i < gameBoard.length; i++) {
+            for (int j = gameBoard[i].length; j >=1 ; j--) {
+                if (gameBoard[i][j] == gameBoard[i][j -1]) {
+
+                }
+            }
+        }
     }
     private void moveTilesRight() {
         for (int i = 0; i < gameBoard.length; i++) {
@@ -91,14 +66,15 @@ public class Game2048 {
         }
     }
 
-    private void shiftGameBoardRight(int r) {
-        int[] intTempRow = new int[4];
-        intTempRow[0] = 0;
-        int[] row = gameBoard[r];
-        for (int i = 0; i < row.length - 1; i++) {
-           row[i + 1] = gameBoard[r][i];
+    private void moveTilesLeft() {
+        for (int i = 0; i < gameBoard.length; i++) {
+            for (int j = gameBoard[i].length - 2;  j >= 0; j--) {
+                if (gameBoard[i][j] == 0 && gameBoard[i][j + 1] != 0) {
+                    gameBoard[i][j] = gameBoard[i][j + 1];
+                    gameBoard[i][j + 1] = 0;
+                }
+            }
         }
-        gameBoard[r] = row;
     }
 
 //    private void applyMoveToRowGivenMove(int[] row, Move move) {
